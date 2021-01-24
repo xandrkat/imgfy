@@ -1,0 +1,7 @@
+.vscode
+vendor
+*.log
+storage
+node_modules
+config/bot.php
+config/database.php

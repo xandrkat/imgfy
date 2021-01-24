@@ -1,0 +1,39 @@
+html {
+  font-family: "Rubik", sans-serif !important;
+}
+
+.filepond--drop-label {
+  background-color: rgba(17, 24, 39, 0.3) !important;
+  color: rgb(229, 231, 235) !important;
+  border-radius: 0.25rem !important;
+}
+
+.filepond--root {
+    font-family: "Rubik", sans-serif !important;
+}
+
+.filepond--panel-root {
+    background-color: transparent !important;
+}
+
+#link::-moz-selection {
+  background: rgb(139, 92, 246);
+}
+
+#link::selection {
+  background: rgb(139, 92, 246);
+}
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+.toggle-checkbox:checked {
+  @apply: right-0 border-green-400;
+  right: 0;
+  border-color: #68D391;
+}
+.toggle-checkbox:checked + .toggle-label {
+  @apply: bg-green-400;
+  background-color: #68D391;
+}
