@@ -9,6 +9,7 @@ Based on [mvc-app](https://github.com/chipslays/mvc-app/).
 ## Links
 
 https://imgfy.cf/
+
 https://image.chipslays.ru/
 
 ## Installation
