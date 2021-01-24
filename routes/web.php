@@ -76,9 +76,9 @@ $app->router()->post('/upload/', function () {
     $filepond = json_decode($_REQUEST['filepond']);
 
     if (@$filepond->secret == 'Y') {
-        $code = getRandomCode(1, range('a','z')) . ':' . getRandomCode(12);
+        $code = getRandomCode(1, range('a', 'z')) . ':' . getRandomCode(12);
         while (App::db()->table('images')->where('code', $code)->exists()) {
-            $code = getRandomCode(1, range('a','z')) . ':' . getRandomCode(12);
+            $code = getRandomCode(1, range('a', 'z')) . ':' . getRandomCode(12);
         }
     } else {
         $code = incrementAphanumeric(App::db()->table('code')->where('id', 1)->first()->code);
@@ -176,7 +176,7 @@ function incrementAphanumeric($string, $position = false)
     return $string;
 }
 
-$app->router()->set404(function() {
+$app->router()->set404(function () {
     header("Location: /", true, 200);
     die;
 });
