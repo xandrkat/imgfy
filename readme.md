@@ -6,6 +6,12 @@ It is forever free & unlimited service for storage images.
 
 Based on [mvc-app](https://github.com/chipslays/mvc-app/).
 
+## Links
+
+https://imgfy.cf/
+
+https://image.chipslays.ru/
+
 ## Installation
 
 ```bash
