@@ -1,6 +1,8 @@
 # 🖼 [Imgfy](https://imgfy.cf/)
 
-[Imgfy](https://imgfy.cf/) it is forever free & unlimited service for storage images.
+It is forever free & unlimited service for storage images.
+
+![Imgfy](https://github.com/chipslays/imgfy/blob/master/.github/imgfy.gif)
 
 Based on [mvc-app](https://github.com/chipslays/mvc-app/).
 
