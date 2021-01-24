@@ -5,3 +5,5 @@ storage
 node_modules
 config/bot.php
 config/database.php
+public/assets/css/app.css
+public/assets/js/app.js
