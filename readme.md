@@ -4,8 +4,6 @@ It is forever free & unlimited service for storage images.
 
 ![Imgfy](https://github.com/chipslays/imgfy/blob/master/.github/imgfy.gif)
 
-Based on [mvc-app](https://github.com/chipslays/mvc-app/).
-
 ## Links
 
 https://imgfy.cf/
@@ -53,6 +51,10 @@ npm run prod
 `/resources/assets/app.js` - javascript
 
 `/resources/views/` - views templates
+
+---
+
+Based on [mvc-app](https://github.com/chipslays/mvc-app/).
 
 
 
