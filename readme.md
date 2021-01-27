@@ -6,9 +6,9 @@ It is forever free & unlimited service for storage images.
 
 ## Links
 
-https://imgfy.cf/
+Primary: https://imgfy.cf/
 
-https://image.chipslays.ru/
+Second: https://image.chipslays.ru/
 
 ## Installation
 
