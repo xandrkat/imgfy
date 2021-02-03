@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "285eabffa51e864578c2b9345c1e68ea",
+    "content-hash": "0f38246883570628a202c83916894ddb",
     "packages": [
         {
             "name": "chipslays/array",
@@ -528,16 +528,16 @@
         },
         {
             "name": "illuminate/database",
-            "version": "v8.22.1",
+            "version": "v8.24.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/database.git",
-                "reference": "4a2040c25d28315be005784a9ea4c2efb2a95a27"
+                "reference": "49d9fb12529d9dfee26d98f9331c59791b3f55e9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/database/zipball/4a2040c25d28315be005784a9ea4c2efb2a95a27",
-                "reference": "4a2040c25d28315be005784a9ea4c2efb2a95a27",
+                "url": "https://api.github.com/repos/illuminate/database/zipball/49d9fb12529d9dfee26d98f9331c59791b3f55e9",
+                "reference": "49d9fb12529d9dfee26d98f9331c59791b3f55e9",
                 "shasum": ""
             },
             "require": {
@@ -588,7 +588,11 @@
                 "orm",
                 "sql"
             ],
-            "time": "2021-01-13T13:37:56+00:00"
+            "support": {
+                "issues": "https://github.com/laravel/framework/issues",
+                "source": "https://github.com/laravel/framework"
+            },
+            "time": "2021-01-21T14:09:58+00:00"
         },
         {
             "name": "illuminate/events",
@@ -2533,5 +2537,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.0.0"
 }
