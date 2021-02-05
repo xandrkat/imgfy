@@ -9,7 +9,8 @@
         "phpgt/cookie": "^1.0",
         "monolog/monolog": "^2.2",
         "chipslays/router": "^1.0",
-        "chipslays/telegram-bot-api": "^1.0"
+        "chipslays/telegram-bot-api": "^1.0",
+        "chipslays/telegraph": "^1.0"
     },
     "require-dev": {
         "symfony/var-dumper": "^5.2"
