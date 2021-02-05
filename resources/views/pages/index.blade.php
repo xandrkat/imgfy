@@ -142,7 +142,7 @@
 			<div class="w-96">
 				<div class="hidden sm:block my-5 md:my-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-blue-500 to-purple-500">
 					<div class="text-6xl font-black tracking-tighter">IMGFY</div>
-					<div class="tracking-tight text-sm">upload something interesting</div>
+					<div class="text-sm">upload something awesome</div>
 				</div>
 				<input type="file" class="mt-4 sm:mt-0">
 				<div class="text-center mb-4">

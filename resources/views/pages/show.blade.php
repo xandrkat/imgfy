@@ -51,7 +51,7 @@
 		<div class="flex h-screen">
 			<div class="m-auto">
 				<div id="preview" class="p-5" style="cursor: -moz-zoom-in; cursor: -webkit-zoom-in; cursor: zoom-in;"> {{--
-					<div id="preload" class="font-bold text-gray-200 animate-pulse"> loading </div> --}} <img id="image" class="rounded h-auto" src="{{ $link }}" loading="lazy" alt="Image"> </div>
+					<div id="preload" class="font-bold text-gray-200 animate-pulse"> loading </div> --}} <img id="image" class="h-auto" src="{{ $link }}" loading="lazy" alt="Image"> </div>
 			</div>
 		</div>
 	</div>

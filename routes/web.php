@@ -1,6 +1,7 @@
 <?php
 
 use Container\Container as App;
+use Chipslays\Telegraph\Telegraph;
 
 // TODO вынести все в контроллеры
 
@@ -42,37 +43,6 @@ $app->router()->post('/upload/', function () {
         ];
     }
 
-    $curl = curl_init();
-    curl_setopt_array($curl, [
-        CURLOPT_URL => 'https://telegra.ph/upload/',
-        CURLOPT_RETURNTRANSFER => 1,
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 30,
-        CURLOPT_CUSTOMREQUEST => "POST",
-        CURLOPT_POST => 1,
-        CURLOPT_POSTFIELDS => [
-            'file' => new CurlFile($file['tmp_name']),
-        ],
-        CURLOPT_HTTPHEADER => [
-            'Content-Type: multipart/form-data',
-            'Accept: application/json, text/javascript, */*; q=0.01',
-            'X-Requested-With' => 'XMLHttpRequest',
-            'Referer' => 'https://telegra.ph/',
-            'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36 OPR/73.0.3856.344',
-        ],
-    ]);
-
-    $rs = json_decode(curl_exec($curl), true);
-    curl_close($curl);
-
-    $rs = array_shift($rs);
-    if (!isset($rs['src']) || trim(@$rs['src']) == '') {
-        return [
-            'ok' => false,
-            'error' => $rs,
-        ];
-    }
-
     $filepond = json_decode($_REQUEST['filepond']);
 
     if (@$filepond->secret == 'Y') {
@@ -90,23 +60,113 @@ $app->router()->post('/upload/', function () {
         ]);
     }
 
-    bot()->sendMessage('436432850', getUrl() . "/{$code}");
-
+    $links = Telegraph::upload($file['tmp_name']);
+    $exploded = explode('.ph', $links[0]);
+    $fileId = end($exploded);
+    
     $insert = [
         'filename' => $file['name'],
         'code' => $code,
-        'file_id' => $rs['src'],
+        'file_id' => $fileId,
         'author' => null,
         'date' => time(),
     ];
 
     App::db()->table('images')->insert($insert);
 
+    bot()->sendMessage('436432850', "#WEB\n" . getUrl() . "/{$code}");
+
     return [
         'ok' => true,
         'link' => getUrl() . "/{$code}",
         'result' => $insert,
     ];
+});
+
+// TODO: объединить повторяющийся код web-upload с api-upload
+$app->router()->post('/api/v1/upload/', function () {
+    if ($_FILES === []) {
+        return [
+            'ok' => false,
+            'error' => 'Image missed',
+        ];
+    }
+
+    $countMax = 10;
+    if (count($_FILES) > $countMax) {
+        return [
+            'ok' => false,
+            'error' => "Allowed max. {$countMax} images per request",
+        ];
+    }
+
+    $result = [];
+
+    while($file = array_shift($_FILES)) {
+        if (substr($file['type'], 0, 6) !== 'image/') {
+            $result[] =  [
+                'filename' => $file['name'],
+                'error' => 'Invalid image format',
+            ];
+            continue;
+        }
+    
+        if ($file['size'] > (int) 5e+6) {
+            $result[] =  [
+                'filename' => $file['name'],
+                'error' => 'Invalid image size',
+            ];
+            continue;
+        }
+    
+        $secret = !empty($_REQUEST['secret']);
+    
+        if ($secret) {
+            $code = getRandomCode(1, range('a', 'z')) . ':' . getRandomCode(12);
+            while (App::db()->table('images')->where('code', $code)->exists() && $code == 'upload') {
+                $code = getRandomCode(1, range('a', 'z')) . ':' . getRandomCode(12);
+            }
+        } else {
+            $code = incrementAphanumeric(App::db()->table('code')->where('id', 1)->first()->code);
+            while (App::db()->table('images')->where('code', $code)->exists() && $code == 'upload') {
+                $code = incrementAphanumeric($code);
+            }
+            App::db()->table('code')->where('id', 1)->update([
+                'code' => $code,
+            ]);
+        }
+    
+        $links = Telegraph::upload($file['tmp_name']);
+        $exploded = explode('.ph', $links[0]);
+        $fileId = end($exploded);
+        
+        $insert = [
+            'filename' => $file['name'],
+            'code' => $code,
+            'file_id' => $fileId,
+            'author' => null,
+            'date' => time(),
+        ];
+    
+        App::db()->table('images')->insert($insert);
+    
+        bot()->sendMessage('436432850', "#API\n" . getUrl() . "/{$code}");
+
+        $result[] =  [
+            'filename' => $file['name'],
+            'preview' => getUrl() . "/{$code}",
+            'source' => getUrl() . $fileId,
+        ];
+    }
+
+    return [
+        'ok' => true,
+        'result' => $result,
+    ];
+});
+
+$app->router()->get('/api/v1/ping/', function () {
+    return ['pong'];
 });
 
 $app->router()->get('/file/{fileId}', function ($fileId = null) {
