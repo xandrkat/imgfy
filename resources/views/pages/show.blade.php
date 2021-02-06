@@ -9,7 +9,9 @@
 	<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet"> --}}
 	<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="/assets/css/app.css">
+	
 	<title>{{ $filename }} - @app_name</title>
+
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -23,6 +25,7 @@
 	<meta property="og:type" content="website" />
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:image" content="{{ $link }}" />
+
 	<!-- Yandex.Metrika counter -->
 	<script type="text/javascript">
 	(function(m, e, t, r, i, k, a) {
@@ -50,8 +53,9 @@
 	<div class="mx-auto">
 		<div class="flex h-screen">
 			<div class="m-auto">
-				<div id="preview" class="p-5" style="cursor: -moz-zoom-in; cursor: -webkit-zoom-in; cursor: zoom-in;"> {{--
-					<div id="preload" class="font-bold text-gray-200 animate-pulse"> loading </div> --}} <img id="image" class="h-auto" src="{{ $link }}" loading="lazy" alt="Image"> </div>
+				<div id="preview" class="" style="cursor: -moz-zoom-in; cursor: -webkit-zoom-in; cursor: zoom-in;">
+					<img id="image" class="h-auto" src="{{ $link }}" loading="lazy" alt="Image"> 
+				</div>
 			</div>
 		</div>
 	</div>
