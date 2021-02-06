@@ -11,6 +11,18 @@ $app->router()->get('/', function () {
     ]);
 });
 
+$app->router()->get('/terms', function () {
+    App::render('pages/terms', [
+        'totalImagesCount' => number_format(App::db()->table('images')->count(), 0, '', ' '),
+    ]);
+});
+
+$app->router()->get('/api', function () {
+    App::render('pages/api', [
+        'totalImagesCount' => number_format(App::db()->table('images')->count(), 0, '', ' '),
+    ]);
+});
+
 $app->router()->post('/upload/', function () {
     $headers = getallheaders();
 
