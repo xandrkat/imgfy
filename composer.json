@@ -1,6 +1,6 @@
 {
     "require": {
-        "illuminate/database": "8.24.0",
+        "illuminate/database": "8.40.0",
         "laravel/helpers": "^1.4",
         "chipslays/php-container": "*",
         "illuminate/view": "^8.19",
